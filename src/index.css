@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 210 75% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 75% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 75% 15%;
+
+    --primary: 210 75% 15%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 210 75% 15%;
+
+    --muted: 210 15% 93%;
+    --muted-foreground: 210 10% 45%;
+
+    --accent: 190 100% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 190 100% 42%;
+
+    --radius: 0.75rem;
+
+    /* Custom brand tokens */
+    --navy: 210 75% 15%;
+    --navy-deep: 210 80% 10%;
+    --electric: 190 100% 42%;
+    --electric-light: 190 100% 52%;
+    --energy: 25 95% 55%;
+    --energy-light: 25 95% 65%;
+    --surface: 210 20% 98%;
+    --surface-alt: 210 15% 95%;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --shadow-card: 0 4px 24px -4px hsl(210 75% 15% / 0.08);
+    --shadow-card-hover: 0 12px 40px -8px hsl(210 75% 15% / 0.15);
+    --shadow-hero: 0 20px 60px -12px hsl(210 75% 15% / 0.25);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .container-narrow {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gradient-navy {
+    background: linear-gradient(135deg, hsl(var(--navy-deep)), hsl(var(--navy)));
+  }
+
+  .gradient-electric {
+    background: linear-gradient(135deg, hsl(var(--electric)), hsl(var(--electric-light)));
+  }
+
+  .gradient-energy {
+    background: linear-gradient(135deg, hsl(var(--energy)), hsl(var(--energy-light)));
+  }
+
+  .text-gradient-electric {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--electric)), hsl(var(--electric-light)));
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px hsl(190 100% 42% / 0.2); }
+    50% { box-shadow: 0 0 40px hsl(190 100% 42% / 0.4); }
+  }
+
+  .water-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .water-ripple::before,
+  .water-ripple::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid hsl(190 100% 42% / 0.15);
+    animation: ripple 4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .water-ripple::before {
+    width: 200px;
+    height: 200px;
+    bottom: -60px;
+    right: -60px;
+  }
+
+  .water-ripple::after {
+    width: 300px;
+    height: 300px;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.5);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+}
